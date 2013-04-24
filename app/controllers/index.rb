@@ -6,8 +6,15 @@ end
 post '/urls' do
   puts "Someone tried to shorten a url"
   @url = Url.new(params)
-  @url.create_short_url
-  erb :display
+  if @url.valid?
+    @url.create_short_url
+    erb :display
+  else
+    @error = @url.errors.full_messages.first
+    @list_short_urls = Url.all
+    erb :index
+  end
+  
   # create a new short Url
   # display the shortened url
 end

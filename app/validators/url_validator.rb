@@ -10,16 +10,3 @@ class UrlValidator < ActiveModel::EachValidator
     url.kind_of?(URI::HTTP) || url.kind_of?(URI::HTTPS)
   end 
 end
-
-class Url < ActiveRecord::Base
-  validates :long_url, url: true, :uniqueness => true
-
-  def create_short_url
-    self.update_attribute(:short_url, SecureRandom.hex(3))
-  end
-
-  def increment_click_count
-    self.click_count += 1
-    self.save
-  end
-end
