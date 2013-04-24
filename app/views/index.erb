@@ -4,7 +4,8 @@
 
   <ul>
     <% @list_short_urls.each  do |url| %>
-      <li> <a href='/<%= url.short_url %>'><%= url.short_url %></a></li>
+      <li> <a href='/<%= url.short_url %>'><%= url.short_url %></a>
+        <%= url.click_count %>  Clicks</li>
     <% end %>
   </ul>
 

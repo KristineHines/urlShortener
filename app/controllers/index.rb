@@ -15,5 +15,6 @@ end
 get '/:short_url' do
   short_url = params[:short_url]
   url = Url.where('short_url = ?', short_url).first
+  url.increment_click_count
   redirect url.long_url
 end
